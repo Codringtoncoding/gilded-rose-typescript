@@ -8,6 +8,10 @@ const isLegendary = (item: Item): boolean => {
     return item.name === 'Sulfuras, Hand of Ragnaros';
 }
 
+const isConjured = (item: Item): boolean => {
+    return item.name === 'Elderwand';
+}
+
 const isAgedBrie = (item: Item): boolean => {
     return item.name === 'Aged Brie';
 }
@@ -65,6 +69,19 @@ const getUpdatedBackstagePassQuality = (item: Item) => {
     return newQuality;
 }
 
+const getUpdatedElderwandQuality = (item: Item): number => {
+    let newQuality = item.quality - 2
+
+    if (itemExpired(item)) {
+        newQuality = newQuality - 2;
+    }
+    if (newQuality <= 0) {
+        newQuality = 0;
+    }
+    return newQuality;
+
+} 
+
 
 const getUpdatedAgedBrieQuality = (item: Item): number => {
     let newQuality = item.quality +1;
@@ -89,6 +106,10 @@ const getUpdatedQuality = (item: Item): number => {
         return getUpdatedAgedBrieQuality(item);
     }
 
+    if (isConjured(item)) {
+        return getUpdatedElderwandQuality(item);
+    }
+
     if (isBackstagePass(item)) {
       return getUpdatedBackstagePassQuality(item);
     }
@@ -105,69 +126,3 @@ export const updateQuality = (items: Item[]): Item[] => {
 
     return items;
 }
-
-
-
-
-// const increaseItemQualityByOneUnit = (item: Item): number  => {
-//     return item.quality + 1;
-// }
-
-
-
-// const itemQualityBelowFifty = (item: Item): number => {
-//     if (item.quality < 50) {
-//         return increaseItemQualityByOneUnit(item)
-//     }
-//     else(item.quality); {
-//         return item.quality + 1;
-//     }
-// }
-
-// const itemSellInBelowSix = (item: Item): number => {
-//     if(item.sellIn <6){
-//         increaseItemQualityByOneUnit(item);
-//     }
-//     return item.quality + 3;
-// }
-
-// const itemSellInBelowEleven = (item: Item): number => {
-//     if (item.sellIn < 11){
-//         increaseItemQualityByOneUnit(item);
-//     }
-//     return item.quality + 2;
-// }
-
-
-
-// const itemBackStagePass = (item: Item): number => {
-//     if(itemQualityBelowFifty(item)){
-//         increaseItemQualityByOneUnit(item)
-//     }
-//     if(itemSellInBelowEleven(item)){
-//         increaseItemQualityByOneUnit(item)
-//     }
-//     if(itemSellInBelowSix(item)){
-//         increaseItemQualityByOneUnit(item)
-//     }
-//     return item.quality;
-// }
-
-//oldcode
-
-// const isBackstagePass(item)) 
-//     if (itemQualityBelowFifty(item))
-//         return 
-//             if (itemSellInBelowEleven(item))
-                
-//             }
-//             if (item.sellIn < 6) {
-//                 if (item.quality < 50) {
-//                     item.quality = item.quality + 1;
-//                 }
-//             }
-//         }
-// }
-// return item.quality;
-// }
-

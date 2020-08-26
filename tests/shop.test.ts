@@ -54,19 +54,19 @@ describe("The update item function", () => {
 
         describe("of conjuring items", () => {
             it("by decreasing it by 2", () => {
-                const items = [{ name: "conjuring item", sellIn: 10, quality: 20 }];
+                const items = [{ name: "Elderwand", sellIn: 10, quality: 20 }];
                 const updatedItems = updateQuality(items);
                 expect(updatedItems[0].quality).toBe(18);
             })
 
             it("doesn't decrease below zero", () => {
-                const items = [{ name: "conjuring item", sellIn: 10, quality: 0 }];
+                const items = [{ name: "Elderwand", sellIn: 10, quality: 0 }];
                 const updatedItems = updateQuality(items);
                 expect(updatedItems[0].quality).toBe(0);
             })
 
             it("sellin date is below 0 then decrease quality by four", () => {
-                const items = [{ name: "conjuring item", sellIn: 0, quality: 5 }];
+                const items = [{ name: "Elderwand", sellIn: 0, quality: 5 }];
                 const updatedItems = updateQuality(items);
                 expect(updatedItems[0].quality).toBe(1)
             })
